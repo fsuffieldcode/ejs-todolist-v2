@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const _ = require("lodash")
 
-require('dotenv').config();
+const dotEnv = require('dotenv').config();
 
 const mongoPw = process.env.MONGO_PW
 console.log(mongoPw)
