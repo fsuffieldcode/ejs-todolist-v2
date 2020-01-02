@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const _ = require("lodash")
 
-const dotEnv = require('dotenv').config();
+require('dotenv').config();
 
 const mongoPw = process.env.MONGO_PW
 console.log(mongoPw)
@@ -46,7 +46,7 @@ const listSchema = {
 
 const List = mongoose.model("List", listSchema)
 
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
 
   Item.find({}, function (err, foundItems) {
 
@@ -66,7 +66,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/:customListName", function (req, res) {
-  const customListName = _.capitalize(req.params.customListName)
+  const customListme = _.capitalize(req.params.customListName)
 
   List.findOne({ name: customListName }, function (err, foundList) {
     if (!err) {
