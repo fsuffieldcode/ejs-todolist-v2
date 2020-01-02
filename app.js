@@ -46,7 +46,7 @@ const listSchema = {
 
 const List = mongoose.model("List", listSchema)
 
-app.get("*", function (req, res) {
+app.get("/", function (req, res) {
 
   Item.find({}, function (err, foundItems) {
 
@@ -66,7 +66,7 @@ app.get("*", function (req, res) {
 });
 
 app.get("/:customListName", function (req, res) {
-  const customListme = _.capitalize(req.params.customListName)
+  const customListName = _.capitalize(req.params.customListName)
 
   List.findOne({ name: customListName }, function (err, foundList) {
     if (!err) {
