@@ -5,25 +5,16 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 require('dotenv').config();
 const _ = require("lodash")
-// const mongoPw = process.env.MONGO_PW
-// const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority'
-
-const MongoClient = require("mongodb").MongoClient;
-const client = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true });
-client.connect();
-mongoose.connection.once('open', () => { console.log('MongoDB Connected'); });
-mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); }); 
+const uri = process.env.MONGO_URI
 
 const app = express();
 
 app.set('view engine', 'ejs');
 
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const itemsSchema = {
   name: String
