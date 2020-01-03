@@ -7,17 +7,16 @@ const _ = require("lodash")
 
 const app = express();
 
-let mongoPw = process.env.MONGO_PW
+app.set('view engine', 'ejs');
 
 require('dotenv').config();
 
-app.set('view engine', 'ejs');
+let mongoPw = process.env.MONGO_PW
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.connect(`mongodb+srv://fabian:${mongoPw}@cluster0-26kcr.mongodb.net/todolistDB`, { useNewUrlParser: true, useUnifiedTopology: true })
-
 
 const itemsSchema = {
   name: String
