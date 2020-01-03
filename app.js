@@ -1,6 +1,6 @@
 //jshint esversion:6
 
-const express =equire("express");
+const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const _ = require("lodash")
@@ -145,14 +145,14 @@ app.get("/about", function (req, res) {
   res.render("about");
 });
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 3000;
+// }
 
-app.listen(port, function () {
-  console.log("Server started successfully");
-});
+// app.listen(port, function () {
+//   console.log("Server started successfully");
+// });
 
-// const port = process.env.PORT || 3000;
-// app.listen(port)
+const port = process.env.PORT || 3000;
+app.listen(port);
