@@ -18,7 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.connect(uri, { useNewUrlParser: true }, () => {
-  this.catch(err => console.log(err));
+  try {
+    console.log("successfully connected")
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 const itemsSchema = {
