@@ -7,7 +7,7 @@ const _ = require("lodash")
 
 const app = express();
 
-// let mongoPw = process.env.MONGO_PW
+let mongoPw = process.env.MONGO_PW
 
 require('dotenv').config();
 
