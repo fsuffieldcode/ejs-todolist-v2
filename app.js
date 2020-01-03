@@ -133,9 +133,6 @@ app.post("/delete", function (req, res) {
         }
       })
   }
-
-
-
 })
 
 app.get("/about", function (req, res) {
