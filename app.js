@@ -5,8 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const _ = require("lodash")
 const mongoPw = process.env.MONGO_PW
-// const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB'
-const uri = 'mongodb+srv://fabian:Arigold89@cluster0-26kcr.mongodb.net/todolistDB'
+const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB'
 
 const app = express();
 
@@ -105,9 +104,11 @@ app.post("/", function (req, res) {
     res.redirect("/")
   } else {
     List.findOne({ name: listName }, function (err, foundList) {
-      foundList.items.push(item)
-      foundList.save()
-      res.redirect("/" + listName)
+      if(!err){
+        foundList.items.push(item)
+        foundList.save()
+        res.redirect("/" + listName)
+      }
     })
   }
 });
