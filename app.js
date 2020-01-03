@@ -16,6 +16,8 @@ let mongoPw = process.env.MONGO_PW
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+mongoose.Promise = global.Promise
+
 mongoose.connect(`mongodb+srv://fabian:${mongoPw}@cluster0-26kcr.mongodb.net/todolistDB`, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const itemsSchema = {
