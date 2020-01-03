@@ -7,7 +7,7 @@ const _ = require("lodash")
 
 const app = express();
 
-let mongoPw = process.env.MONGO_PW
+// let mongoPw = process.env.MONGO_PW
 
 require('dotenv').config();
 
@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB' || 'mongodb://localhost:3000/', { useNewUrlParser: true})
+mongoose.connect('mongodb+srv://fabian:Test-123@cluster0-26kcr.mongodb.net/todolistDB' || 'mongodb://localhost:3000/', { useNewUrlParser: true})
 
 // , useUnifiedTopology: true 
 
