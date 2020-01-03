@@ -5,11 +5,11 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const _ = require("lodash")
 
-require('dotenv').config();
+const app = express();
 
 const mongoPw = process.env.MONGO_PW
 
-const app = express();
+require('dotenv').config();
 
 app.set('view engine', 'ejs');
 
