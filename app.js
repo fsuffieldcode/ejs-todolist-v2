@@ -16,8 +16,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://fabian:Test-123@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:3000/', { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 const itemsSchema = {
