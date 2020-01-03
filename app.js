@@ -5,11 +5,15 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 require('dotenv').config();
 const _ = require("lodash")
-const uri = process.env.MONGO_URI
+mongoPw = process.env.MONGO_PW
+const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority'
+
 
 const app = express();
 
 app.set('view engine', 'ejs');
+
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
