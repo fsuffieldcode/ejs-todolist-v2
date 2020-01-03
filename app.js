@@ -17,7 +17,7 @@ require('dotenv').config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(uri, { useNewUrlParser: true }, () => {
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
   try {
     console.log("successfully connected")
   } catch (err) {
