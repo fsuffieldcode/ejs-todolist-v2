@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://fabian:Test-123@cluster0-26kcr.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://fabian:Test-123@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 
@@ -145,9 +145,9 @@ app.get("/about", function (req, res) {
 });
 
 let port = process.env.PORT;
-// if (port == null || port == "") {
-//   port = 3000;
-// }
+if (port == null || port == "") {
+  port = 3000;
+}
 
 app.listen(port, function () {
   console.log("Server started successfully");
