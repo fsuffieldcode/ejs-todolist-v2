@@ -140,6 +140,8 @@ app.post("/delete", function (req, res) {
 // });
 
 
-app.listen(process.env.PORT || 5000 , function() {
-  console.log("Server started successfully")
+app.listen(process.env.PORT || 5000 , function(err) {
+  if(!err) {
+    console.log("Server started successfully")
+  }
 })
