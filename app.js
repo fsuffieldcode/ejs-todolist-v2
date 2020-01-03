@@ -139,7 +139,7 @@ app.get("/about", function (req, res) {
   res.render("about");
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT
 
 app.listen(port, function() {
   console.log("Listening on port " + port)
