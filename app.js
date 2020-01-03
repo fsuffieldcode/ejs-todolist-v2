@@ -3,6 +3,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
+const mongoPw = process.env.MONGO_PW
+const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/test?retryWrites=true&w=majority'
+
 const _ = require("lodash")
 
 const app = express();
@@ -11,12 +14,12 @@ app.set('view engine', 'ejs');
 
 require('dotenv').config();
 
-let mongoPw = process.env.MONGO_PW
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(`mongodb+srv://fabian:${mongoPw}@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority`, {useNewUrlParser: true})
+mongoose.connect(uri, { useNewUrlParser: true }, () => {
+  this.catch(err => console.log(err));
+})
 
 const itemsSchema = {
   name: String
