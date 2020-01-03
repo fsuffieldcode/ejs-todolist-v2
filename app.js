@@ -7,8 +7,7 @@ const _ = require("lodash")
 
 require('dotenv').config();
 
-let mongoPw = process.env.MONGO_PW
-console.log(mongoPw)
+const mongoPw = process.env.MONGO_PW
 
 const app = express();
 
@@ -17,7 +16,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(`mongodb+srv://fabian:${mongoPw}@cluster0-26kcr.mongodb.net/todolistDB`, {useNewUrlParser: true})
+mongoose.connect('mongodb+srv://fabian:Test-123@cluster0-26kcr.mongodb.net/todolistDB', { useNewUrlParser: true, useUnifiedTopology: true })
+
+
 
 const itemsSchema = {
   name: String
@@ -120,11 +121,9 @@ app.post("/delete", function (req, res) {
 
   if (listName === "Today") {
     Item.findByIdAndDelete(checkedItemId, function (err) {
-      if (err) {
-        console.log(err)
-      } else {
-        res.redirect("/")
+      if (!err) {
         console.log("Successfully deleted item")
+        res.redirect("/")
       }
     })
   } else {
@@ -134,18 +133,12 @@ app.post("/delete", function (req, res) {
         if (!err) {
           res.redirect("/" + listName)
         }
-      }
-    )
+      })
   }
 
 
 
 })
-
-// app.get("/work", function(req,res){
-//   res.render("list", {listTitle: "Work List", newListItems: workItems});
-// });
-
 
 app.get("/about", function (req, res) {
   res.render("about");
@@ -156,7 +149,6 @@ if (port == null || port == "") {
   port = 3000;
 }
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Server started successfully");
 });
-
