@@ -104,7 +104,7 @@ app.post("/", function (req, res) {
     res.redirect("/")
   } else {
     List.findOne({ name: listName }, function (err, foundList) {
-      if(!err){
+      if (!err) {
         foundList.items.push(item)
         foundList.save()
         res.redirect("/" + listName)
@@ -135,14 +135,11 @@ app.post("/delete", function (req, res) {
   }
 })
 
-// app.get("/about", function (req, res) {
-//   res.render("about");
-// });
+app.get("/about", function (req, res) {
+  res.render("about");
+});
 
 
-try {
-  app.listen(process.env.PORT || 5000 , function(err) {
+app.listen(process.env.PORT || 5000, function () {
+  console.log("Server started successfully")
 })
-} catch(err) {
-  console.log(err)
-}
