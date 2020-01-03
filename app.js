@@ -3,10 +3,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
+const _ = require("lodash")
 const mongoPw = process.env.MONGO_PW
 const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB'
-
-const _ = require("lodash")
 
 const app = express();
 
@@ -140,8 +139,13 @@ app.get("/about", function (req, res) {
   res.render("about");
 });
 
-const port = process.env.PORT || 3000;
+let port = process.env.port;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port);
 
 app.listen(port, function() {
-  console.log("Listening on port " + port)
-});
+  console.log("Server started successfully")
+})
