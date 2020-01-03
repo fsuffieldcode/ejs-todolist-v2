@@ -49,7 +49,6 @@ const List = mongoose.model("List", listSchema)
 app.get("/", function (req, res) {
 
   Item.find({}, function (err, foundItems) {
-    res.render("list", { listTitle: "Today", newListItems: foundItems });
 
     if (foundItems.length === 0) {
       Item.insertMany(defaultItems, function (err) {
@@ -145,5 +144,7 @@ app.get("/about", function (req, res) {
 });
 
 const port = process.env.PORT || 3000;
-console.log(port)
-app.listen(port);
+
+app.listen(port, function() {
+  console.log("Listening on port " + port)
+});
