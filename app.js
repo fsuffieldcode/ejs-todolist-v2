@@ -5,30 +5,18 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const _ = require("lodash")
 
-require('dotenv').config();
-
 const app = express();
-
-const mongoPw = process.env.MONGO_PW
-
-const URI = `mongodb+srv://fabian:${mongoPw}@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority`
-
-mongoose.Promise = global.Promise
-
-const connectDB = async () => {
-  mongoose.connect(URI, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true})
-  console.log('DB Connected....');
-  }
-  
-  module.exports = connectDB
 
 app.set('view engine', 'ejs');
 
+require('dotenv').config();
+
+let mongoPw = process.env.MONGO_PW
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(`mongodb+srv://fabian:${mongoPw}@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const itemsSchema = {
   name: String
