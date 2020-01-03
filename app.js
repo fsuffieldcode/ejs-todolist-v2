@@ -7,7 +7,7 @@ const _ = require("lodash")
 
 require('dotenv').config();
 
-const mongoPw = process.env.MONGO_PW
+let mongoPw = process.env.MONGO_PW
 console.log(mongoPw)
 
 const app = express();
@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB', {useNewUrlParser: true})
+mongoose.connect(`mongodb+srv://fabian:${mongoPw}@cluster0-26kcr.mongodb.net/todolistDB`, {useNewUrlParser: true})
 
 const itemsSchema = {
   name: String
