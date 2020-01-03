@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const _ = require("lodash")
 const mongoPw = process.env.MONGO_PW
-const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB'
+const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority'
 
 const app = express();
 
