@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const _ = require("lodash")
 const mongoPw = process.env.MONGO_PW
-const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB'
+// const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB'
+const uri = 'mongodb+srv://fabian:Arigold89@cluster0-26kcr.mongodb.net/todolistDB'
 
 const app = express();
 
@@ -20,30 +21,31 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const itemsSchema = {
   name: String
-}
+};
 
-const Item = mongoose.model("Item", itemsSchema)
+const Item = mongoose.model("Item", itemsSchema);
+
 
 const item1 = new Item({
   name: "Welcome to your todolist!"
-})
+});
 
 const item2 = new Item({
-  name: "Click the + button to add an item"
-})
+  name: "Hit the + button to add a new item."
+});
 
 const item3 = new Item({
-  name: "<-- Hit this to delete an item"
-})
+  name: "<-- Hit this to delete an item."
+});
 
-const defaultItems = [item1, item2, item3]
+const defaultItems = [item1, item2, item3];
 
 const listSchema = {
   name: String,
   items: [itemsSchema]
-}
+};
 
-const List = mongoose.model("List", listSchema)
+const List = mongoose.model("List", listSchema);
 
 app.get("/", function (req, res) {
 
@@ -71,15 +73,12 @@ app.get("/:customListName", function (req, res) {
     if (!err) {
       if (!foundList) {
         // Create a new list
-        console.log("NAME NOT IN USE")
         const list = new List({
           name: customListName,
           items: defaultItems
         })
-
         list.save()
         res.redirect("/" + customListName)
-
       } else {
         // Show an existing list
         res.render("list", { listTitle: foundList.name, newListItems: foundList.items })
@@ -135,9 +134,9 @@ app.post("/delete", function (req, res) {
   }
 })
 
-app.get("/about", function (req, res) {
-  res.render("about");
-});
+// app.get("/about", function (req, res) {
+//   res.render("about");
+// });
 
 let port = process.env.port;
 if (port == null || port == "") {
