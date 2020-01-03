@@ -9,7 +9,7 @@ const _ = require("lodash")
 // const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority'
 
 const MongoClient = require("mongodb").MongoClient;
-const client = await new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true });
+const client = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true });
 client.connect();
 mongoose.connection.once('open', () => { console.log('MongoDB Connected'); });
 mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); }); 
