@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 require('dotenv').config();
 const _ = require("lodash")
 mongoPw = process.env.MONGO_PW
-const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/todolistDB?retryWrites=true&w=majority'
+const uri = 'mongodb+srv://fabian:' + mongoPw + '@cluster0-26kcr.mongodb.net/test?retryWrites=true&w=majority'
 
 
 const app = express();
